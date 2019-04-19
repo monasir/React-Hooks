@@ -18,12 +18,15 @@ function Square({value, onClick}) {
   
   function Board() {
     const [squares, setSquares] = useState(Array(9).fill(null));
+    const [isXNext, setIsXNext] = useState(true);
+
     function renderSquare(i) {
       return <Square
         value={squares[i]}
         onClick={() => {
           const nextSquares = squares.slice();
-          nextSquares[i] = 'x';
+          nextSquares[i] = isXNext ? 'x':'o';
+          setIsXNext(!isXNext);
           setSquares(nextSquares);
 
         }}
