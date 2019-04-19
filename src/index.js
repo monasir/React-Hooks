@@ -1,21 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 
-function Square() {
+function Square({value, onClick}) {
     
       return (
-        <button className="square">
-          {/* TODO */}
+        <button 
+          className="square"
+          onClick={onClick}
+        >
+          {value}
         </button>
       );
 
   }
   
   function Board() {
+    const [squares, setSquares] = useState(Array(9).fill(null));
     function renderSquare(i) {
-      return <Square />;
+      return <Square
+        value={squares[i]}
+        onClick={() => {
+          const nextSquares = squares.slice();
+          nextSquares[i] = 'x';
+          setSquares(nextSquares);
+
+        }}
+       />;
     }
   
     
@@ -25,19 +37,19 @@ function Square() {
         <div>
           <div className="status">{status}</div>
           <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
+            {renderSquare(0)}
+            {renderSquare(1)}
+            {renderSquare(2)}
           </div>
           <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
+            {renderSquare(3)}
+            {renderSquare(4)}
+            {renderSquare(5)}
           </div>
           <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
+            {renderSquare(6)}
+            {renderSquare(7)}
+            {renderSquare(8)}
           </div>
         </div>
       );
