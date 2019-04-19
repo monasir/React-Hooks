@@ -13,15 +13,15 @@ function Square() {
 
   }
   
-  class Board extends React.Component {
-    renderSquare(i) {
+  function Board() {
+    function renderSquare(i) {
       return <Square />;
     }
   
-    render() {
-      const status = 'Next player: X';
+    
+    const status = 'Next player: X';
   
-      return (
+    return (
         <div>
           <div className="status">{status}</div>
           <div className="board-row">
@@ -41,7 +41,7 @@ function Square() {
           </div>
         </div>
       );
-    }
+    
   }
   
   class Game extends React.Component {
